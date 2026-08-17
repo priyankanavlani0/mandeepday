@@ -1,0 +1,3348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Love 💙</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+:root{
+    --sky:#8fd3ef;
+    --sky-light:#e9f8ff;
+    --blue:#194d66;
+    --blue-dark:#0c3448;
+    --black:#17242b;
+    --white:#ffffff;
+    --paper:#fffdf8;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:"DM Sans",sans-serif;
+    color:var(--black);
+    background:var(--sky-light);
+    overflow-x:hidden;
+}
+
+h1,h2,h3,h4{
+    font-family:"Playfair Display",serif;
+}
+
+.hand{
+    font-family:"Caveat",cursive;
+}
+
+
+/* =====================================================
+   LOADING SCREEN
+===================================================== */
+
+#loader{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(180deg,#75c8e8,#eafaff);
+    z-index:99999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:opacity 1s ease, visibility 1s ease;
+}
+
+.loader-heart{
+    font-size:80px;
+    animation:heartbeat 1s infinite;
+}
+
+#loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+@keyframes heartbeat{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.25);
+    }
+}
+
+
+/* =====================================================
+   SKY BACKGROUND
+===================================================== */
+
+.sky{
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        180deg,
+        #76c8e8 0%,
+        #aee2f4 45%,
+        #eafaff 100%
+    );
+}
+
+
+/* =====================================================
+   CLOUDS
+===================================================== */
+
+.cloud{
+    position:absolute;
+    width:180px;
+    height:55px;
+    background:rgba(255,255,255,.72);
+    border-radius:100px;
+    z-index:1;
+    filter:blur(.2px);
+    animation:cloudMove 35s linear infinite;
+}
+
+.cloud::before,
+.cloud::after{
+    content:"";
+    position:absolute;
+    background:inherit;
+    border-radius:50%;
+}
+
+.cloud::before{
+    width:80px;
+    height:80px;
+    left:25px;
+    bottom:15px;
+}
+
+.cloud::after{
+    width:95px;
+    height:95px;
+    right:20px;
+    bottom:5px;
+}
+
+.cloud1{
+    top:12%;
+    left:-250px;
+}
+
+.cloud2{
+    top:35%;
+    left:-350px;
+    transform:scale(.65);
+    animation-duration:45s;
+    animation-delay:8s;
+}
+
+.cloud3{
+    top:65%;
+    left:-300px;
+    transform:scale(.8);
+    animation-duration:50s;
+    animation-delay:15s;
+}
+
+@keyframes cloudMove{
+    from{
+        transform:translateX(0);
+    }
+    to{
+        transform:translateX(calc(100vw + 600px));
+    }
+}
+
+
+/* =====================================================
+   FLOATING HEARTS
+===================================================== */
+
+.hearts{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:2;
+}
+
+.heart{
+    position:absolute;
+    bottom:-50px;
+    color:rgba(255,255,255,.65);
+    animation:heartFloat linear infinite;
+}
+
+@keyframes heartFloat{
+
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
+    }
+
+    15%{
+        opacity:.8;
+    }
+
+    85%{
+        opacity:.8;
+    }
+
+    100%{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+
+}
+
+
+/* =====================================================
+   PASSWORD
+===================================================== */
+
+#lockScreen{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+}
+
+.lock-content{
+    position:relative;
+    z-index:10;
+    padding:25px;
+    animation:heroEntrance 1.5s ease;
+}
+
+@keyframes heroEntrance{
+    from{
+        opacity:0;
+        transform:translateY(40px) scale(.95);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.lock-icon{
+    font-size:90px;
+    animation:
+        lockFloat 3s ease-in-out infinite,
+        heartbeat 2s infinite;
+}
+
+@keyframes lockFloat{
+    50%{
+        transform:translateY(-12px) rotate(3deg);
+    }
+}
+
+.lock-title{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(3rem,9vw,6rem);
+    color:white;
+    text-shadow:
+        0 5px 20px rgba(10,50,70,.35);
+}
+
+.lock-subtitle{
+    color:#173d4e;
+    font-size:17px;
+}
+
+.password{
+    display:block;
+    width:min(330px,90%);
+    margin:25px auto 12px;
+    padding:15px 22px;
+    border:2px solid rgba(255,255,255,.7);
+    border-radius:50px;
+    outline:none;
+    background:rgba(255,255,255,.85);
+    text-align:center;
+    font-size:16px;
+}
+
+.password:focus{
+    box-shadow:0 0 0 5px rgba(255,255,255,.25);
+}
+
+.btn-main{
+    border:none;
+    background:var(--blue-dark);
+    color:white;
+    padding:14px 30px;
+    border-radius:50px;
+    font-weight:700;
+    transition:.35s;
+    box-shadow:0 10px 25px rgba(12,52,72,.2);
+}
+
+.btn-main:hover{
+    color:white;
+    transform:translateY(-4px) scale(1.03);
+    box-shadow:0 15px 35px rgba(12,52,72,.3);
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+#mainContent{
+    display:none;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    padding:30px 20px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:5;
+    animation:heroEntrance 1.8s ease;
+}
+
+.hero-small{
+    color:#174b63;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    font-weight:700;
+    font-size:14px;
+}
+
+.hero h1{
+    font-size:clamp(3.5rem,11vw,8rem);
+    color:#102f3d;
+    margin:10px 0;
+    animation:titleGlow 3s infinite alternate;
+}
+
+@keyframes titleGlow{
+    from{
+        text-shadow:0 4px 15px rgba(255,255,255,.2);
+    }
+    to{
+        text-shadow:
+            0 0 10px rgba(255,255,255,.8),
+            0 0 35px rgba(255,255,255,.5);
+    }
+}
+
+.hero p{
+    max-width:650px;
+    margin:auto;
+    color:#193d4d;
+    line-height:1.9;
+}
+
+
+/* =====================================================
+   SCROLL DOWN
+===================================================== */
+
+.scroll-down{
+    position:absolute;
+    bottom:35px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#174b63;
+    animation:scrollBounce 1.5s infinite;
+}
+
+.scroll-down i{
+    font-size:30px;
+}
+
+@keyframes scrollBounce{
+    50%{
+        transform:translate(-50%,10px);
+    }
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.section{
+    padding:100px 15px;
+    position:relative;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:55px;
+}
+
+.section-title small{
+    color:#28718f;
+    letter-spacing:4px;
+    font-weight:700;
+}
+
+.section-title h2{
+    color:#102f3d;
+    font-size:clamp(2.5rem,6vw,4.5rem);
+    margin:10px 0;
+}
+
+.section-title p{
+    color:#52656e;
+}
+
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+.reveal{
+    opacity:0;
+    transform:translateY(60px);
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+
+/* =====================================================
+   PAPER
+===================================================== */
+
+.paper{
+    max-width:1100px;
+    margin:auto;
+    background:var(--paper);
+    border-radius:22px;
+    padding:clamp(25px,5vw,65px);
+    box-shadow:
+        0 30px 70px rgba(30,75,95,.13);
+    position:relative;
+    overflow:hidden;
+}
+
+.paper::before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:#d9f4ff;
+    top:-90px;
+    right:-70px;
+}
+
+.paper::after{
+    content:"";
+    position:absolute;
+    inset:15px;
+    border:1px solid rgba(70,120,140,.12);
+    border-radius:15px;
+    pointer-events:none;
+}
+
+.chapter{
+    color:#3985a3;
+    font-weight:800;
+    letter-spacing:3px;
+    font-size:13px;
+}
+
+.paper h2{
+    color:#102f3d;
+}
+
+.paper p{
+    line-height:2;
+}
+
+
+/* =====================================================
+   PHOTO
+===================================================== */
+
+.polaroid{
+    background:#fff;
+    padding:12px 12px 35px;
+    max-width:320px;
+    margin:auto;
+    box-shadow:
+        0 20px 40px rgba(30,70,90,.17);
+    transform:rotate(-4deg);
+    transition:.5s;
+    animation:photoFloat 5s ease-in-out infinite;
+}
+
+.polaroid:nth-child(2){
+    animation-delay:1s;
+}
+
+.polaroid:hover{
+    transform:rotate(0) scale(1.05);
+    z-index:5;
+}
+
+.polaroid img{
+    width:100%;
+    height:270px;
+    object-fit:cover;
+}
+
+.polaroid p{
+    font-family:"Caveat",cursive;
+    font-size:27px;
+    margin:8px 0 0;
+    color:#173d4e;
+}
+
+@keyframes photoFloat{
+    0%,100%{
+        transform:rotate(-4deg) translateY(0);
+    }
+
+    50%{
+        transform:rotate(-2deg) translateY(-12px);
+    }
+}
+
+
+/* =====================================================
+   TIMELINE
+===================================================== */
+
+.timeline{
+    max-width:850px;
+    margin:auto;
+    position:relative;
+}
+
+.timeline::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:0;
+    bottom:0;
+    width:3px;
+    background:#8bcce4;
+    transform:translateX(-50%);
+}
+
+.timeline-item{
+    width:50%;
+    padding:20px 40px;
+    position:relative;
+}
+
+.timeline-item:nth-child(even){
+    margin-left:50%;
+}
+
+.timeline-dot{
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:#123f56;
+    border:5px solid #cceefa;
+    border-radius:50%;
+    right:-10px;
+    top:30px;
+    z-index:3;
+    box-shadow:0 0 0 5px rgba(255,255,255,.6);
+}
+
+.timeline-item:nth-child(even) .timeline-dot{
+    left:-10px;
+}
+
+.timeline-card{
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 12px 30px rgba(30,75,95,.1);
+    transition:.4s;
+}
+
+.timeline-card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 20px 40px rgba(30,75,95,.16);
+}
+
+.timeline-card h4{
+    color:#123f56;
+}
+
+.timeline-card p{
+    color:#52656e;
+}
+
+
+/* =====================================================
+   LETTERS
+===================================================== */
+
+.letter{
+    height:100%;
+    background:white;
+    padding:30px 20px;
+    border-radius:22px;
+    text-align:center;
+    cursor:pointer;
+    box-shadow:0 12px 30px rgba(30,75,95,.08);
+    transition:.4s;
+}
+
+.letter:hover{
+    transform:translateY(-10px) rotate(1deg);
+}
+
+.envelope{
+    font-size:55px;
+    display:inline-block;
+    transition:.5s;
+}
+
+.letter:hover .envelope{
+    animation:envelopeShake .7s;
+}
+
+@keyframes envelopeShake{
+    25%{transform:rotate(-10deg)}
+    50%{transform:rotate(10deg)}
+    75%{transform:rotate(-5deg)}
+    100%{transform:rotate(0)}
+}
+
+.letter h4{
+    color:#123f56;
+}
+
+.letter-content{
+    max-height:0;
+    opacity:0;
+    overflow:hidden;
+    transition:
+        max-height .8s ease,
+        opacity .6s ease;
+}
+
+.letter.open .letter-content{
+    max-height:300px;
+    opacity:1;
+    margin-top:15px;
+}
+
+.letter.open .envelope{
+    transform:rotateX(180deg);
+}
+
+
+/* =====================================================
+   MUSIC
+===================================================== */
+
+.music-box{
+    max-width:650px;
+    margin:auto;
+    background:linear-gradient(135deg,#123f56,#438ba8);
+    color:white;
+    border-radius:30px;
+    padding:45px 25px;
+    text-align:center;
+    box-shadow:0 25px 50px rgba(20,70,90,.25);
+}
+
+.record{
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    margin:0 auto 25px;
+    background:
+    repeating-radial-gradient(
+        circle,
+        #101820 0,
+        #101820 4px,
+        #252e33 5px,
+        #101820 9px
+    );
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    animation:spin 7s linear infinite;
+    animation-play-state:paused;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+.record.playing{
+    animation-play-state:running;
+}
+
+.record-center{
+    width:50px;
+    height:50px;
+    background:#8fd3ef;
+    border-radius:50%;
+    border:8px solid #123f56;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+
+/* =====================================================
+   MEMORY GAME
+===================================================== */
+
+.game-container{
+    max-width:650px;
+    margin:auto;
+}
+
+.game-stats{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    color:#123f56;
+    font-weight:700;
+    margin-bottom:25px;
+}
+
+.memory-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    max-width:520px;
+    margin:auto;
+}
+
+.memory-card{
+    aspect-ratio:1;
+    perspective:800px;
+    cursor:pointer;
+}
+
+.card-inner{
+    width:100%;
+    height:100%;
+    position:relative;
+    transform-style:preserve-3d;
+    transition:.65s cubic-bezier(.4,.2,.2,1);
+}
+
+.memory-card.flip .card-inner{
+    transform:rotateY(180deg);
+}
+
+.card-front,
+.card-back{
+    position:absolute;
+    inset:0;
+    backface-visibility:hidden;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.card-front{
+    background:linear-gradient(135deg,#7ec9e6,#e3f8ff);
+    color:#123f56;
+    font-size:28px;
+    box-shadow:0 8px 18px rgba(30,75,95,.12);
+}
+
+.card-back{
+    transform:rotateY(180deg);
+    background:white;
+    border:2px solid #a4d9ea;
+    font-size:38px;
+}
+
+.memory-card.matched{
+    animation:matched .7s ease;
+}
+
+@keyframes matched{
+    50%{
+        transform:scale(1.12);
+    }
+}
+
+.hidden-memory{
+    display:none;
+    margin:30px auto 0;
+    padding:30px;
+    max-width:600px;
+    background:#e5f8ff;
+    border:2px dashed #6aafc7;
+    border-radius:22px;
+    animation:memoryReveal 1s ease;
+}
+
+@keyframes memoryReveal{
+    from{
+        opacity:0;
+        transform:scale(.7) rotate(-5deg);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) rotate(0);
+    }
+}
+
+
+/* =====================================================
+   NIGHT SKY
+===================================================== */
+
+.star-area{
+    max-width:1000px;
+    height:520px;
+    margin:auto;
+    border-radius:30px;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(255,255,255,.2),transparent 2%),
+        linear-gradient(180deg,#061e31,#123e57);
+    box-shadow:0 25px 60px rgba(10,40,60,.25);
+}
+
+.star-title{
+    position:relative;
+    z-index:3;
+    padding-top:45px;
+    text-align:center;
+    color:white;
+}
+
+.star{
+    position:absolute;
+    color:white;
+    cursor:pointer;
+    font-size:24px;
+    animation:twinkle 1.5s infinite alternate;
+    transition:.3s;
+}
+
+.star:hover{
+    transform:scale(1.6);
+    text-shadow:0 0 20px white;
+}
+
+@keyframes twinkle{
+    from{
+        opacity:.25;
+    }
+    to{
+        opacity:1;
+        text-shadow:0 0 20px white;
+    }
+}
+
+.shooting-star{
+    position:absolute;
+    width:120px;
+    height:2px;
+    background:linear-gradient(90deg,transparent,white);
+    transform:rotate(-25deg);
+    top:20%;
+    left:-150px;
+    animation:shoot 6s linear infinite;
+}
+
+@keyframes shoot{
+    0%{
+        left:-150px;
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    30%{
+        left:110%;
+        opacity:0;
+    }
+
+    100%{
+        left:110%;
+        opacity:0;
+    }
+}
+
+.star-message{
+    position:absolute;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:30px;
+    background:rgba(4,27,43,.92);
+    z-index:10;
+    animation:fadeIn 1s ease;
+}
+
+.star-message h3{
+    color:white;
+    font-size:40px;
+}
+
+.star-message p{
+    color:white;
+    font-family:"Caveat",cursive;
+    font-size:35px;
+}
+
+@keyframes fadeIn{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+
+/* =====================================================
+   GIFT
+===================================================== */
+
+.gift-area{
+    text-align:center;
+}
+
+.gift{
+    width:170px;
+    height:150px;
+    position:relative;
+    margin:50px auto 35px;
+    cursor:pointer;
+    animation:giftFloat 2.5s ease-in-out infinite;
+}
+
+@keyframes giftFloat{
+    50%{
+        transform:translateY(-12px);
+    }
+}
+
+.gift-box{
+    position:absolute;
+    bottom:0;
+    width:170px;
+    height:110px;
+    background:#70bdd9;
+    border-radius:8px;
+    box-shadow:0 15px 30px rgba(30,80,100,.2);
+}
+
+.gift-lid{
+    position:absolute;
+    top:15px;
+    left:-10px;
+    width:190px;
+    height:38px;
+    background:#438ba8;
+    border-radius:8px;
+    z-index:4;
+    transition:1s cubic-bezier(.2,.8,.2,1);
+}
+
+.gift-ribbon{
+    position:absolute;
+    width:25px;
+    height:150px;
+    left:72px;
+    background:white;
+    z-index:5;
+}
+
+.gift-bow{
+    position:absolute;
+    top:-30px;
+    left:53px;
+    font-size:50px;
+    z-index:8;
+}
+
+.gift.open{
+    animation:giftOpenShake .7s;
+}
+
+@keyframes giftOpenShake{
+    20%{transform:rotate(-5deg)}
+    40%{transform:rotate(5deg)}
+    60%{transform:rotate(-3deg)}
+    80%{transform:rotate(3deg)}
+}
+
+.gift.open .gift-lid{
+    transform:translateY(-100px) rotate(-15deg);
+}
+
+.gift-message{
+    display:none;
+    max-width:650px;
+    margin:auto;
+    background:white;
+    padding:35px;
+    border-radius:25px;
+    box-shadow:0 20px 50px rgba(30,70,90,.15);
+    animation:giftMessage 1s ease;
+}
+
+@keyframes giftMessage{
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.9);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+
+/* =====================================================
+   FUTURE CARDS
+===================================================== */
+
+.future{
+    height:100%;
+    background:white;
+    border-radius:22px;
+    padding:30px 20px;
+    text-align:center;
+    box-shadow:0 12px 30px rgba(30,75,95,.08);
+    transition:.4s;
+}
+
+.future:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px rgba(30,75,95,.15);
+}
+
+.future i{
+    font-size:50px;
+    color:#28718f;
+}
+
+.future h4{
+    color:#123f56;
+}
+
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+.final-section{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+}
+
+.final-heart{
+    font-size:100px;
+    animation:
+        heartbeat 1.2s infinite,
+        finalGlow 2s infinite alternate;
+}
+
+@keyframes finalGlow{
+    from{
+        filter:drop-shadow(0 0 5px rgba(255,255,255,.3));
+    }
+    to{
+        filter:drop-shadow(0 0 30px rgba(255,255,255,.9));
+    }
+}
+
+.final-section h2{
+    font-size:clamp(3rem,9vw,7rem);
+    color:#102f3d;
+}
+
+.typewriter{
+    font-family:"Caveat",cursive;
+    color:#28718f;
+    font-size:clamp(2rem,5vw,3.5rem);
+    max-width:800px;
+    margin:25px auto;
+    min-height:100px;
+}
+
+
+/* =====================================================
+   CONFETTI
+===================================================== */
+
+.confetti{
+    position:fixed;
+    width:10px;
+    height:16px;
+    top:-30px;
+    z-index:9999;
+    pointer-events:none;
+    animation:confettiFall 4s linear forwards;
+}
+
+@keyframes confettiFall{
+    0%{
+        transform:translateY(0) rotate(0);
+    }
+
+    100%{
+        transform:translateY(110vh) rotate(720deg);
+    }
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:767px){
+
+    .section{
+        padding:70px 12px;
+    }
+
+    .timeline::before{
+        left:10px;
+    }
+
+    .timeline-item,
+    .timeline-item:nth-child(even){
+        width:100%;
+        margin-left:0;
+        padding-left:40px;
+        padding-right:0;
+    }
+
+    .timeline-dot,
+    .timeline-item:nth-child(even) .timeline-dot{
+        left:0;
+        right:auto;
+    }
+
+    .memory-grid{
+        gap:7px;
+    }
+
+    .card-front{
+        font-size:19px;
+    }
+
+    .card-back{
+        font-size:28px;
+    }
+
+    .record{
+        width:125px;
+        height:125px;
+    }
+
+    .star-area{
+        height:450px;
+    }
+
+    .gift{
+        transform:scale(.85);
+    }
+
+    .hero h1{
+        line-height:1.1;
+    }
+
+}
+
+
+/* =====================================================
+   EXTRA MINI GAMES
+===================================================== */
+
+.games-hub{
+    max-width:1100px;
+    margin:auto;
+}
+
+.mini-game{
+    background:white;
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 15px 35px rgba(30,75,95,.10);
+    height:100%;
+    position:relative;
+    overflow:hidden;
+}
+
+.mini-game h3{
+    color:#123f56;
+    margin-bottom:8px;
+}
+
+.mini-game-sub{
+    color:#657780;
+    min-height:48px;
+}
+
+/* Love Meter */
+.love-meter{
+    height:18px;
+    background:#e6f5fb;
+    border-radius:50px;
+    overflow:hidden;
+    margin:20px 0 12px;
+}
+
+.love-meter-fill{
+    width:0%;
+    height:100%;
+    border-radius:50px;
+    background:linear-gradient(90deg,#70bdd9,#123f56);
+    transition:width .35s ease;
+}
+
+.love-score{
+    font-family:"Caveat",cursive;
+    font-size:30px;
+    color:#28718f;
+    min-height:42px;
+}
+
+/* Catch the Heart */
+.catch-area{
+    height:260px;
+    border-radius:20px;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(255,255,255,.8),transparent 8%),
+        linear-gradient(180deg,#bceafa,#eafaff);
+    position:relative;
+    overflow:hidden;
+    cursor:crosshair;
+    border:2px dashed #9bd7e9;
+}
+
+.catch-heart{
+    position:absolute;
+    font-size:42px;
+    cursor:pointer;
+    user-select:none;
+    animation:heartPop .35s ease;
+    filter:drop-shadow(0 8px 8px rgba(30,75,95,.15));
+}
+
+@keyframes heartPop{
+    from{transform:scale(.2) rotate(-20deg);opacity:0}
+    to{transform:scale(1) rotate(0);opacity:1}
+}
+
+.catch-score{
+    font-weight:700;
+    color:#123f56;
+    margin-top:12px;
+}
+
+/* Quiz */
+.quiz-option{
+    width:100%;
+    border:2px solid #d2edf6;
+    background:#f8fdff;
+    color:#123f56;
+    border-radius:15px;
+    padding:12px 15px;
+    margin:7px 0;
+    text-align:left;
+    transition:.25s;
+}
+
+.quiz-option:hover{
+    transform:translateX(4px);
+    background:#e8f8ff;
+}
+
+.quiz-option.correct{
+    background:#dff8e8;
+    border-color:#76c99a;
+}
+
+.quiz-option.wrong{
+    background:#ffe5e8;
+    border-color:#e69aa4;
+}
+
+.quiz-question{
+    font-weight:700;
+    color:#173d4e;
+    margin-bottom:15px;
+}
+
+.quiz-result{
+    font-family:"Caveat",cursive;
+    font-size:28px;
+    color:#28718f;
+    min-height:40px;
+}
+
+/* Secret Button */
+.secret-button{
+    position:relative;
+    overflow:hidden;
+}
+
+.secret-button::after{
+    content:"";
+    position:absolute;
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    background:rgba(255,255,255,.18);
+    top:-35px;
+    right:-25px;
+}
+
+@media(max-width:767px){
+    .mini-game{
+        padding:22px;
+    }
+
+    .catch-area{
+        height:230px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOADER
+===================================================== -->
+
+<div id="loader">
+    <div class="loader-heart">💙</div>
+</div>
+
+
+<!-- =====================================================
+     LOCK SCREEN
+===================================================== -->
+
+<section id="lockScreen" class="sky">
+
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+
+    <div class="hearts" id="hearts"></div>
+
+    <div class="lock-content">
+
+        <div class="lock-icon">
+            🔐
+        </div>
+
+        <h1 class="lock-title">
+            Our Little Universe
+        </h1>
+
+        <p class="lock-subtitle">
+            A secret place made only for you. 💙
+        </p>
+
+        <input
+            id="password"
+            type="password"
+            class="password"
+            placeholder="Enter our secret"
+        >
+
+        <button
+            class="btn-main"
+            onclick="unlock()"
+        >
+            <i class="bi bi-key-fill"></i>
+            Unlock Our Story
+        </button>
+
+        <p
+            id="wrong"
+            style="display:none;color:#8b1e32;margin-top:15px;font-weight:600;"
+        >
+            Hmm... that's not it. Try again 💙
+        </p>
+
+        <div class="mt-3">
+            <small style="color:#173d4e;">
+                Hint: Something only we know.
+            </small>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main id="mainContent" class="sky">
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+
+    <div class="hearts" id="mainHearts"></div>
+
+    <div class="hero-content">
+
+        <div class="hero-small">
+            For My Favorite Person
+        </div>
+
+        <h1>
+            Happy Birthday 💙
+        </h1>
+
+        <p>
+            I could have simply wished you
+            "Happy Birthday"...
+
+            but you deserve an entire little
+            universe instead.
+        </p>
+
+        <button
+            class="btn-main mt-4"
+            onclick="scrollToSection('story')"
+        >
+            Start Our Story
+            <i class="bi bi-arrow-down"></i>
+        </button>
+
+    </div>
+
+    <div class="scroll-down">
+        <i class="bi bi-chevron-double-down"></i>
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CHAPTER 1
+===================================================== -->
+
+<section id="story" class="section">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <small>CHAPTER 01</small>
+
+            <h2>
+                Where It All Started
+            </h2>
+
+            <p>
+                Every beautiful story has a beginning.
+            </p>
+
+        </div>
+
+
+        <div class="paper reveal">
+
+            <div class="row align-items-center g-5">
+
+                <div class="col-md-6">
+
+                    <div class="chapter">
+                        OUR BEGINNING
+                    </div>
+
+                    <h2 class="mt-2">
+                        The Day You Became Important
+                    </h2>
+
+                    <p>
+                        Somewhere between all the ordinary
+                        conversations, silly moments and
+                        random memories...
+
+                        you became someone who wasn't
+                        ordinary anymore.
+                    </p>
+
+                    <p class="hand"
+                       style="font-size:32px;color:#28718f;">
+                        And I'm really glad our paths crossed. 💙
+                    </p>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <div class="polaroid">
+
+                        <img
+                            src="images/photo1.jpg"
+                            alt="Our memory"
+                            onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=700&q=80'"
+                        >
+
+                        <p>
+                            Where it all began... ✨
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TIMELINE
+===================================================== -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <small>OUR JOURNEY</small>
+
+            <h2>
+                Little Moments, Big Memories
+            </h2>
+
+            <p>
+                The moments that became our story.
+            </p>
+
+        </div>
+
+
+        <div class="timeline">
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-card">
+
+                    <h4>
+                        The Beginning 🌱
+                    </h4>
+
+                    <p>
+                        Add the date or memory of when
+                        your story really started.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-card">
+
+                    <h4>
+                        Our First Special Memory 📸
+                    </h4>
+
+                    <p>
+                        Write about the first moment
+                        that became special to both of you.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-card">
+
+                    <h4>
+                        The Moment I Knew ❤️
+                    </h4>
+
+                    <p>
+                        The moment when you realized
+                        this person was different.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-card">
+
+                    <h4>
+                        Today 💍
+                    </h4>
+
+                    <p>
+                        And somehow all those little moments
+                        brought us here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MEMORIES
+===================================================== -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <small>CHAPTER 02</small>
+
+            <h2>
+                Our Little Memories
+            </h2>
+
+            <p>
+                Replace these pictures with your own memories.
+            </p>
+
+        </div>
+
+
+        <div class="row g-5">
+
+            <div class="col-md-4 reveal">
+
+                <div class="polaroid">
+
+                    <img
+                        src="images/photo2.jpg"
+                        alt="Memory"
+                        onerror="this.src='https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=700&q=80'"
+                    >
+
+                    <p>
+                        One of my favorites. 💙
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 reveal">
+
+                <div
+                    class="polaroid"
+                    style="transform:rotate(4deg);"
+                >
+
+                    <img
+                        src="images/photo3.jpg"
+                        alt="Memory"
+                        onerror="this.src='https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=700&q=80'"
+                    >
+
+                    <p>
+                        A moment worth keeping. 🤍
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 reveal">
+
+                <div
+                    class="polaroid"
+                    style="transform:rotate(-2deg);"
+                >
+
+                    <img
+                        src="images/photo4.jpg"
+                        alt="Memory"
+                        onerror="this.src='https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=700&q=80'"
+                    >
+
+                    <p>
+                        And another memory. ✨
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     OPEN WHEN
+===================================================== -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <small>FOR YOU</small>
+
+            <h2>
+                Open When...
+            </h2>
+
+            <p>
+                Little letters for different versions of you.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-md-4 reveal">
+
+                <div
+                    class="letter"
+                    onclick="openLetter(this)"
+                >
+
+                    <div class="envelope">
+                        💌
+                    </div>
+
+                    <h4>
+                        You Miss Me
+                    </h4>
+
+                    <div class="letter-content">
+
+                        <p>
+                            Close your eyes for a second.
+
+                            Imagine me sitting beside you,
+                            probably annoying you...
+
+                            but smiling because you're there.
+
+                            Distance doesn't change
+                            how much you mean to me. 💙
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 reveal">
+
+                <div
+                    class="letter"
+                    onclick="openLetter(this)"
+                >
+
+                    <div class="envelope">
+                        🌧️
+                    </div>
+
+                    <h4>
+                        You Had A Bad Day
+                    </h4>
+
+                    <div class="letter-content">
+
+                        <p>
+                            Whatever happened today,
+                            remember that one bad day
+                            doesn't define your whole life.
+
+                            Take a breath.
+
+                            Tomorrow is another page. 🤍
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 reveal">
+
+                <div
+                    class="letter"
+                    onclick="openLetter(this)"
+                >
+
+                    <div class="envelope">
+                        😊
+                    </div>
+
+                    <h4>
+                        You Need A Smile
+                    </h4>
+
+                    <div class="letter-content">
+
+                        <p>
+                            Congratulations.
+
+                            You've officially reached
+                            the section where you're
+                            required to smile.
+
+                            Yes, right now. 😌💙
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MUSIC
+===================================================== -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <small>OUR SONG</small>
+
+            <h2>
+                Press Play 🎵
+            </h2>
+
+        </div>
+
+
+        <div class="music-box reveal">
+
+            <div
+                id="record"
+                class="record"
+            >
+
+                <div class="record-center"></div>
+
+            </div>
+
+            <h3>
+                A Song That Reminds Me Of You
+            </h3>
+
+            <p>
+                Add your special song in
+                <b>music/our-song.mp3</b>
+            </p>
+
+            <audio
+                id="song"
+                src="music/our-song.mp3"
+            ></audio>
+
+            <button
+                class="btn-main mt-3"
+                onclick="toggleMusic()"
+            >
+
+                <i
+                    id="musicIcon"
+                    class="bi bi-play-fill"
+                ></i>
+
+                <span id="musicText">
+                    Play Our Song
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MEMORY MATCH
+===================================================== -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <small>SECRET CHAPTER</small>
+
+            <h2>
+                Match Our Memories 🃏
+            </h2>
+
+            <p>
+                Complete the game to unlock a hidden memory.
+            </p>
+
+        </div>
+
+
+        <div class="paper reveal">
+
+            <div class="game-container">
+
+                <div class="game-stats">
+
+                    <div>
+                        Moves:
+                        <span id="moves">0</span>
+                    </div>
+
+                    <div>
+                        Pairs:
+                        <span id="pairs">0</span>/6
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="memoryGrid"
+                    class="memory-grid"
+                ></div>
+
+
+                <p
+                    id="gameText"
+                    class="hand text-center mt-4"
+                    style="font-size:28px;color:#28718f;"
+                >
+                    Find all six pairs... 💙
+                </p>
+
+
+                <div
+                    id="hiddenMemory"
+                    class="hidden-memory"
+                >
+
+                    <h3>
+                        💌 You Found The Hidden Memory
+                    </h3>
+
+                    <p>
+                        There is one memory I could never
+                        put into a photograph.
+
+                        It's the feeling of realizing that
+                        somewhere along the way...
+
+                        you became one of the most
+                        important people in my life.
+                    </p>
+
+                    <p
+                        class="hand"
+                        style="font-size:32px;color:#28718f;"
+                    >
+                        And that's a memory I want
+                        to keep forever. 💙
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     EXTRA GAMES HUB
+===================================================== -->
+
+<section class="section" id="games">
+
+    <div class="container games-hub">
+
+        <div class="section-title reveal">
+            <small>BONUS CHAPTER 🎮</small>
+            <h2>Okay... One More Game 😏</h2>
+            <p>Because a birthday universe should have a few silly challenges too.</p>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- GAME 1 -->
+            <div class="col-lg-4 reveal">
+                <div class="mini-game">
+                    <div class="chapter">GAME 01</div>
+                    <h3>💙 Love Meter</h3>
+                    <p class="mini-game-sub">
+                        Tap the button until the meter discovers just how much love is hiding here.
+                    </p>
+
+                    <div class="love-meter">
+                        <div id="loveMeterFill" class="love-meter-fill"></div>
+                    </div>
+
+                    <div id="loveScore" class="love-score">
+                        Love level: 0%
+                    </div>
+
+                    <button class="btn-main" onclick="chargeLove()">
+                        <i class="bi bi-heart-fill"></i>
+                        Charge Love
+                    </button>
+                </div>
+            </div>
+
+            <!-- GAME 2 -->
+            <div class="col-lg-4 reveal">
+                <div class="mini-game">
+                    <div class="chapter">GAME 02</div>
+                    <h3>💘 Catch My Heart</h3>
+                    <p class="mini-game-sub">
+                        Catch the heart before it disappears. You have 20 seconds.
+                    </p>
+
+                    <div id="catchArea" class="catch-area"></div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="catch-score">
+                            ❤️ <span id="catchScore">0</span>
+                        </div>
+                        <div class="catch-score">
+                            ⏱️ <span id="catchTime">20</span>s
+                        </div>
+                    </div>
+
+                    <button id="catchStartBtn"
+                            class="btn-main mt-3"
+                            onclick="startHeartGame()">
+                        Start Challenge
+                    </button>
+
+                    <p id="catchMessage"
+                       class="hand mt-3 mb-0"
+                       style="font-size:25px;color:#28718f;">
+                        Think you can catch it? 😏
+                    </p>
+                </div>
+            </div>
+
+            <!-- GAME 3 -->
+            <div class="col-lg-4 reveal">
+                <div class="mini-game">
+                    <div class="chapter">GAME 03</div>
+                    <h3>🧠 How Well Do You Know Me?</h3>
+                    <p class="mini-game-sub">
+                        A tiny relationship quiz. No cheating. I am watching. 👀
+                    </p>
+
+                    <div id="quizBox">
+                        <div id="quizQuestion" class="quiz-question"></div>
+                        <div id="quizOptions"></div>
+                        <div id="quizResult" class="quiz-result"></div>
+
+                        <button id="quizNext"
+                                class="btn-main mt-2"
+                                style="display:none;"
+                                onclick="nextQuizQuestion()">
+                            Next Question →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-5 reveal">
+            <div class="paper secret-button">
+                <div class="chapter">BONUS SECRET</div>
+                <h3 class="mt-2">🎁 You Survived The Games</h3>
+                <p>
+                    Tap this only after you've played all three.
+                    Or... obviously cheat. I won't tell. 😌
+                </p>
+                <button class="btn-main" onclick="unlockBonusSecret()">
+                    Reveal Bonus 💌
+                </button>
+
+                <div id="bonusSecret"
+                     style="display:none;"
+                     class="mt-4">
+                    <h3>🏆 Official Winner</h3>
+                    <p class="hand"
+                       style="font-size:34px;color:#28718f;">
+                        You win... because somehow you became my favorite person. 💙
+                    </p>
+                    <p>
+                        And yes, there is absolutely no prize.
+                        Except me. You're welcome. 😂❤️
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =====================================================
+     NIGHT SKY
+===================================================== -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <small>ONE MORE SECRET</small>
+
+            <h2>
+                Find A Star 🌙
+            </h2>
+
+            <p>
+                One star has a message just for you.
+            </p>
+
+        </div>
+
+
+        <div class="star-area reveal">
+
+            <div class="shooting-star"></div>
+
+            <div class="star-title">
+
+                <h2 style="color:white;">
+                    Our Little Night Sky
+                </h2>
+
+                <p style="color:#d7edf6;">
+                    Find the special star ✨
+                </p>
+
+            </div>
+
+
+            <span
+                class="star"
+                style="top:25%;left:15%;"
+                onclick="wrongStar(this)"
+            >
+                ★
+            </span>
+
+            <span
+                class="star"
+                style="top:35%;left:72%;"
+                onclick="wrongStar(this)"
+            >
+                ★
+            </span>
+
+            <span
+                class="star"
+                style="top:65%;left:30%;"
+                onclick="wrongStar(this)"
+            >
+                ★
+            </span>
+
+            <span
+                class="star"
+                style="top:72%;left:80%;"
+                onclick="wrongStar(this)"
+            >
+                ★
+            </span>
+
+            <span
+                class="star"
+                style="top:48%;left:50%;"
+                onclick="specialStar()"
+            >
+                ★
+            </span>
+
+
+            <div
+                id="starMessage"
+                class="star-message"
+            >
+
+                <div>
+
+                    <h3>
+                        You Found It ✨
+                    </h3>
+
+                    <p>
+                        "If I could make one wish,
+                        I'd wish for many more years
+                        of making memories with you."
+                        💙
+                    </p>
+
+                    <button
+                        class="btn-main mt-3"
+                        onclick="closeStar(event)"
+                    >
+                        Keep This Secret
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     GIFT
+===================================================== -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <small>JUST FOR YOU</small>
+
+            <h2>
+                There's A Gift Waiting 🎁
+            </h2>
+
+            <p>
+                Tap the box.
+            </p>
+
+        </div>
+
+
+        <div class="gift-area reveal">
+
+            <div
+                id="gift"
+                class="gift"
+                onclick="openGift()"
+            >
+
+                <div class="gift-bow">
+                    🎀
+                </div>
+
+                <div class="gift-lid"></div>
+
+                <div class="gift-box"></div>
+
+                <div class="gift-ribbon"></div>
+
+            </div>
+
+
+            <div
+                id="giftMessage"
+                class="gift-message"
+            >
+
+                <h3>
+                    🎁 Your Surprise
+                </h3>
+
+                <p>
+                    If I could put one thing inside
+                    this box, it wouldn't be a gift.
+
+                    It would be every laugh,
+                    every memory, every hug,
+                    every conversation...
+
+                    and every future moment
+                    I still want to experience with you.
+                </p>
+
+                <p
+                    class="hand"
+                    style="font-size:32px;color:#28718f;"
+                >
+                    You are the real gift. 💙
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FUTURE
+===================================================== -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <small>OUR NEXT CHAPTERS</small>
+
+            <h2>
+                Things I Want To Do With You
+            </h2>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-6 col-md-3 reveal">
+
+                <div class="future">
+
+                    <i class="bi bi-airplane"></i>
+
+                    <h4>
+                        Travel
+                    </h4>
+
+                    <p>
+                        Collecting places,
+                        not just photographs.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-md-3 reveal">
+
+                <div class="future">
+
+                    <i class="bi bi-cup-hot"></i>
+
+                    <h4>
+                        Slow Mornings
+                    </h4>
+
+                    <p>
+                        Coffee, conversations
+                        and nowhere to rush.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-md-3 reveal">
+
+                <div class="future">
+
+                    <i class="bi bi-stars"></i>
+
+                    <h4>
+                        New Dreams
+                    </h4>
+
+                    <p>
+                        Building a life
+                        we're proud of.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-md-3 reveal">
+
+                <div class="future">
+
+                    <i class="bi bi-heart-fill"></i>
+
+                    <h4>
+                        Forever
+                    </h4>
+
+                    <p>
+                        Continuing to
+                        choose each other.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL
+===================================================== -->
+
+<section class="final-section section">
+
+    <div class="container">
+
+        <div class="final-heart">
+            💙
+        </div>
+
+        <div class="chapter">
+            THE FINAL PAGE
+        </div>
+
+        <h2>
+            But Not The End
+        </h2>
+
+        <p
+            class="hand"
+            style="font-size:32px;color:#28718f;"
+        >
+            This isn't the end of our story...
+            <br>
+            it's just the beginning of our next chapter.
+        </p>
+
+        <button
+            class="btn-main mt-4"
+            onclick="showFinal()"
+        >
+            Open One Last Message 💌
+        </button>
+
+
+        <div
+            id="finalSecret"
+            style="display:none;"
+        >
+
+            <div
+                id="typewriter"
+                class="typewriter mt-5"
+            ></div>
+
+            <p
+                class="hand"
+                style="font-size:34px;color:#28718f;"
+            >
+                Happy Birthday, My Love. 💙
+            </p>
+
+            <p>
+                Thank you for being one of the
+                most beautiful parts of my story.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<script>
+
+/* =====================================================
+   LOADER
+===================================================== */
+
+window.addEventListener("load",()=>{
+
+    setTimeout(()=>{
+
+        document
+            .getElementById("loader")
+            .classList.add("hide");
+
+    },900);
+
+});
+
+
+/* =====================================================
+   FLOATING HEARTS
+===================================================== */
+
+function createHearts(containerId,count=18){
+
+    const container=
+        document.getElementById(containerId);
+
+    if(!container) return;
+
+    for(let i=0;i<count;i++){
+
+        const heart=
+            document.createElement("div");
+
+        heart.className="heart";
+
+        heart.innerHTML=
+            Math.random()>.5 ? "♡" : "♥";
+
+        heart.style.left=
+            Math.random()*100+"%";
+
+        heart.style.fontSize=
+            (12+Math.random()*20)+"px";
+
+        heart.style.animationDuration=
+            (8+Math.random()*12)+"s";
+
+        heart.style.animationDelay=
+            Math.random()*10+"s";
+
+        container.appendChild(heart);
+
+    }
+
+}
+
+createHearts("hearts",20);
+createHearts("mainHearts",15);
+
+
+/* =====================================================
+   PASSWORD
+===================================================== */
+
+function unlock(){
+
+    const password=
+        document.getElementById("password")
+        .value
+        .trim()
+        .toUpperCase();
+
+    if(password==="LOVE"){
+
+        document
+            .getElementById("lockScreen")
+            .style.display="none";
+
+        document
+            .getElementById("mainContent")
+            .style.display="block";
+
+        window.scrollTo(0,0);
+
+        createConfetti(35);
+
+    }else{
+
+        const wrong=
+            document.getElementById("wrong");
+
+        wrong.style.display="block";
+
+        const input=
+            document.getElementById("password");
+
+        input.animate(
+            [
+                {transform:"translateX(-8px)"},
+                {transform:"translateX(8px)"},
+                {transform:"translateX(-5px)"},
+                {transform:"translateX(0)"}
+            ],
+            {
+                duration:400
+            }
+        );
+
+    }
+
+}
+
+document
+    .getElementById("password")
+    .addEventListener("keypress",(e)=>{
+
+        if(e.key==="Enter"){
+            unlock();
+        }
+
+    });
+
+
+/* =====================================================
+   SMOOTH SCROLL
+===================================================== */
+
+function scrollToSection(id){
+
+    document
+        .getElementById(id)
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+const revealObserver=
+    new IntersectionObserver(
+        entries=>{
+
+            entries.forEach(entry=>{
+
+                if(entry.isIntersecting){
+
+                    entry.target
+                        .classList
+                        .add("active");
+
+                }
+
+            });
+
+        },
+        {
+            threshold:.15
+        }
+    );
+
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(el=>{
+        revealObserver.observe(el);
+    });
+
+
+/* =====================================================
+   LETTERS
+===================================================== */
+
+function openLetter(element){
+
+    element.classList.toggle("open");
+
+}
+
+
+/* =====================================================
+   MUSIC
+===================================================== */
+
+function toggleMusic(){
+
+    const song=
+        document.getElementById("song");
+
+    const record=
+        document.getElementById("record");
+
+    const icon=
+        document.getElementById("musicIcon");
+
+    const text=
+        document.getElementById("musicText");
+
+
+    if(song.paused){
+
+        song.play();
+
+        record.classList.add("playing");
+
+        icon.className=
+            "bi bi-pause-fill";
+
+        text.innerText=
+            "Pause Our Song";
+
+    }else{
+
+        song.pause();
+
+        record.classList.remove("playing");
+
+        icon.className=
+            "bi bi-play-fill";
+
+        text.innerText=
+            "Play Our Song";
+
+    }
+
+}
+
+document
+    .getElementById("song")
+    .addEventListener("ended",()=>{
+
+        document
+            .getElementById("record")
+            .classList
+            .remove("playing");
+
+        document
+            .getElementById("musicIcon")
+            .className=
+            "bi bi-play-fill";
+
+        document
+            .getElementById("musicText")
+            .innerText=
+            "Play Our Song";
+
+    });
+
+
+/* =====================================================
+   MEMORY GAME
+===================================================== */
+
+const values=[
+    "💙","💙",
+    "🌙","🌙",
+    "✈️","✈️",
+    "📸","📸",
+    "💍","💍",
+    "💌","💌"
+];
+
+let firstCard=null;
+let secondCard=null;
+let locked=false;
+let moves=0;
+let pairs=0;
+
+
+function shuffle(array){
+
+    return array.sort(
+        ()=>Math.random()-.5
+    );
+
+}
+
+
+function createMemoryGame(){
+
+    const grid=
+        document.getElementById("memoryGrid");
+
+    grid.innerHTML="";
+
+    shuffle([...values])
+    .forEach(value=>{
+
+        const card=
+            document.createElement("div");
+
+        card.className=
+            "memory-card";
+
+        card.dataset.value=
+            value;
+
+        card.innerHTML=`
+
+            <div class="card-inner">
+
+                <div class="card-front">
+                    <i class="bi bi-heart-fill"></i>
+                </div>
+
+                <div class="card-back">
+                    ${value}
+                </div>
+
+            </div>
+
+        `;
+
+        card.addEventListener(
+            "click",
+            ()=>flipCard(card)
+        );
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+function flipCard(card){
+
+    if(
+        locked ||
+        card===firstCard ||
+        card.classList.contains("matched")
+    ){
+        return;
+    }
+
+    card.classList.add("flip");
+
+    if(!firstCard){
+
+        firstCard=card;
+
+        return;
+
+    }
+
+    secondCard=card;
+
+    moves++;
+
+    document
+        .getElementById("moves")
+        .innerText=moves;
+
+
+    if(
+        firstCard.dataset.value===
+        secondCard.dataset.value
+    ){
+
+        firstCard.classList.add("matched");
+        secondCard.classList.add("matched");
+
+        pairs++;
+
+        document
+            .getElementById("pairs")
+            .innerText=pairs;
+
+        resetCards();
+
+        if(pairs===6){
+
+            document
+                .getElementById("gameText")
+                .innerText=
+                "You found them all! 💙";
+
+            setTimeout(()=>{
+
+                document
+                    .getElementById("hiddenMemory")
+                    .style.display="block";
+
+                createConfetti(50);
+
+            },500);
+
+        }
+
+    }else{
+
+        locked=true;
+
+        setTimeout(()=>{
+
+            firstCard.classList.remove("flip");
+            secondCard.classList.remove("flip");
+
+            resetCards();
+
+        },900);
+
+    }
+
+}
+
+
+function resetCards(){
+
+    firstCard=null;
+    secondCard=null;
+    locked=false;
+
+}
+
+
+createMemoryGame();
+
+
+/* =====================================================
+   EXTRA MINI GAMES - JAVASCRIPT
+===================================================== */
+
+let loveLevel = 0;
+function chargeLove(){
+    loveLevel = Math.min(100, loveLevel + Math.floor(Math.random()*13)+8);
+    document.getElementById("loveMeterFill").style.width = loveLevel + "%";
+    const score = document.getElementById("loveScore");
+    if(loveLevel >= 100){
+        score.innerText = "Love level: ∞% — Okay, that's enough. 😂💙";
+        createConfetti(25);
+    } else {
+        const messages = [
+            "Love level: " + loveLevel + "% 💙",
+            "Still loading... 😌",
+            "Getting dangerously cute... 🥹",
+            "This is becoming suspiciously romantic... 💙",
+            "Warning: excessive love detected! 🚨❤️"
+        ];
+        score.innerText = messages[Math.floor(Math.random()*messages.length)];
+    }
+}
+
+let catchScore = 0, catchTime = 20, catchTimer = null, heartTimer = null, heartGameRunning = false;
+function startHeartGame(){
+    if(heartGameRunning) return;
+    heartGameRunning = true;
+    catchScore = 0;
+    catchTime = 20;
+    document.getElementById("catchScore").innerText = "0";
+    document.getElementById("catchTime").innerText = "20";
+    document.getElementById("catchMessage").innerText = "Catch it! Catch it! 💘";
+    const btn = document.getElementById("catchStartBtn");
+    btn.disabled = true;
+    btn.innerText = "Game Running...";
+    spawnCatchHeart();
+    catchTimer = setInterval(()=>{
+        catchTime--;
+        document.getElementById("catchTime").innerText = catchTime;
+        if(catchTime <= 0) endHeartGame();
+    },1000);
+}
+function spawnCatchHeart(){
+    if(!heartGameRunning) return;
+    const area = document.getElementById("catchArea");
+    const old = area.querySelector(".catch-heart");
+    if(old) old.remove();
+    const heart = document.createElement("span");
+    heart.className = "catch-heart";
+    heart.innerText = Math.random() > .5 ? "💙" : "💘";
+    heart.style.left = Math.max(8, Math.random()*(area.clientWidth-55)) + "px";
+    heart.style.top = Math.max(8, Math.random()*(area.clientHeight-55)) + "px";
+    heart.onclick = function(e){
+        e.stopPropagation();
+        if(!heartGameRunning) return;
+        catchScore++;
+        document.getElementById("catchScore").innerText = catchScore;
+        heart.animate([{transform:"scale(1)",opacity:1},{transform:"scale(1.8)",opacity:0}],{duration:220});
+        setTimeout(()=>heart.remove(),180);
+        setTimeout(spawnCatchHeart,180);
+    };
+    area.appendChild(heart);
+    clearTimeout(heartTimer);
+    heartTimer = setTimeout(spawnCatchHeart,700);
+}
+function endHeartGame(){
+    heartGameRunning = false;
+    clearInterval(catchTimer);
+    clearTimeout(heartTimer);
+    const heart = document.getElementById("catchArea").querySelector(".catch-heart");
+    if(heart) heart.remove();
+    const btn = document.getElementById("catchStartBtn");
+    btn.disabled = false;
+    btn.innerText = "Play Again";
+    let msg;
+    if(catchScore >= 18){ msg = "WHAT?! 😳 You caught " + catchScore + " hearts. Professional heart catcher! 🏆💙"; createConfetti(35); }
+    else if(catchScore >= 10) msg = "Okayyy... " + catchScore + " hearts! Not bad, Mr. Romantic. 😌💙";
+    else if(catchScore >= 5) msg = catchScore + " hearts. We need to work on those reflexes. 😂";
+    else msg = "Only " + catchScore + "? The heart was literally trying to find you! 😂💘";
+    document.getElementById("catchMessage").innerText = msg;
+}
+
+const quizQuestions = [
+    {question:"What belongs in our little universe?", options:["Only boring serious stuff","Memories, jokes & love","Tax documents","A 9-to-5 meeting"], answer:1},
+    {question:"What should we collect together?", options:["Places & memories","Parking tickets","Arguments","Emails"], answer:0},
+    {question:"When one of us has a bad day, what is the move?", options:["Ignore it","Make it worse","Be there and make them smile","Send a spreadsheet"], answer:2},
+    {question:"What is this birthday page actually about?", options:["A school assignment","A random website","Our story","Online shopping"], answer:2}
+];
+let quizIndex = 0, quizScore = 0, quizAnswered = false;
+function renderQuiz(){
+    const q = quizQuestions[quizIndex];
+    document.getElementById("quizQuestion").innerText = (quizIndex+1)+". "+q.question;
+    const options = document.getElementById("quizOptions");
+    options.innerHTML = "";
+    document.getElementById("quizResult").innerText = "";
+    document.getElementById("quizNext").style.display = "none";
+    quizAnswered = false;
+    q.options.forEach((text,index)=>{
+        const b=document.createElement("button");
+        b.className="quiz-option";
+        b.innerText=text;
+        b.onclick=()=>answerQuiz(index,b);
+        options.appendChild(b);
+    });
+}
+function answerQuiz(index,button){
+    if(quizAnswered) return;
+    quizAnswered=true;
+    const q=quizQuestions[quizIndex];
+    document.querySelectorAll(".quiz-option").forEach((b,i)=>{
+        b.disabled=true;
+        if(i===q.answer) b.classList.add("correct");
+    });
+    if(index===q.answer){
+        quizScore++;
+        document.getElementById("quizResult").innerText="Correct! You actually know me. 🥹💙";
+    } else {
+        button.classList.add("wrong");
+        document.getElementById("quizResult").innerText="Hmm... suspicious. 😂 But I'll forgive you. 💙";
+    }
+    const next=document.getElementById("quizNext");
+    next.style.display="inline-block";
+    next.innerText = quizIndex===quizQuestions.length-1 ? "See My Result 💌" : "Next Question →";
+}
+function nextQuizQuestion(){
+    if(quizIndex < quizQuestions.length-1){ quizIndex++; renderQuiz(); }
+    else showQuizResult();
+}
+function showQuizResult(){
+    document.getElementById("quizOptions").innerHTML="";
+    document.getElementById("quizNext").style.display="none";
+    const q=document.getElementById("quizQuestion"), r=document.getElementById("quizResult");
+    if(quizScore===quizQuestions.length){ q.innerText="🏆 PERFECT SCORE!"; r.innerText="Okay, you officially know me too well. 💙"; createConfetti(30); }
+    else if(quizScore>=2){ q.innerText="💙 Pretty Good!"; r.innerText="You scored "+quizScore+"/"+quizQuestions.length+". I think I'll keep you. 😌"; }
+    else { q.innerText="😂 We Need A Rematch"; r.innerText="You scored "+quizScore+"/"+quizQuestions.length+". Good thing you're cute. 💙"; }
+    const restart=document.createElement("button");
+    restart.className="btn-main mt-2";
+    restart.innerText="Play Quiz Again";
+    restart.onclick=()=>{quizIndex=0;quizScore=0;renderQuiz();};
+    document.getElementById("quizOptions").appendChild(restart);
+}
+
+function unlockBonusSecret(){
+    const bonus=document.getElementById("bonusSecret");
+    if(!bonus) return;
+    bonus.style.display="block";
+    createConfetti(40);
+    bonus.scrollIntoView({behavior:"smooth",block:"center"});
+}
+
+/* Start quiz only after DOM exists */
+renderQuiz();
+
+/* =====================================================
+   STAR
+===================================================== */
+
+function wrongStar(star){
+
+    star.animate(
+        [
+            {transform:"scale(1)"},
+            {transform:"scale(1.8)"},
+            {transform:"scale(1)"}
+        ],
+        {
+            duration:500
+        }
+    );
+
+}
+
+
+function specialStar(){
+
+    document
+        .getElementById("starMessage")
+        .style.display="flex";
+
+    createConfetti(25);
+
+}
+
+
+function closeStar(event){
+
+    event.stopPropagation();
+
+    document
+        .getElementById("starMessage")
+        .style.display="none";
+
+}
+
+
+/* =====================================================
+   GIFT
+===================================================== */
+
+let giftOpened=false;
+
+function openGift(){
+
+    if(giftOpened) return;
+
+    giftOpened=true;
+
+    const gift=
+        document.getElementById("gift");
+
+    gift.classList.add("open");
+
+    createConfetti(45);
+
+    setTimeout(()=>{
+
+        const message=
+            document.getElementById("giftMessage");
+
+        message.style.display="block";
+
+        message.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+
+    },900);
+
+}
+
+
+/* =====================================================
+   FINAL MESSAGE
+===================================================== */
+
+function showFinal(){
+
+    const finalSecret=
+        document.getElementById("finalSecret");
+
+    if(finalSecret.style.display==="block"){
+        return;
+    }
+
+    finalSecret.style.display="block";
+
+    createConfetti(100);
+
+    const text=
+        "No matter where life takes us, I hope we always find our way back to each other. Through every chapter, every adventure, every silly moment and every difficult day... I want you beside me. 💙";
+
+    typeWriter(text);
+
+    setTimeout(()=>{
+
+        finalSecret.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+
+    },200);
+
+}
+
+
+/* =====================================================
+   TYPEWRITER
+===================================================== */
+
+function typeWriter(text){
+
+    const element=
+        document.getElementById("typewriter");
+
+    element.innerHTML="";
+
+    let index=0;
+
+    function type(){
+
+        if(index<text.length){
+
+            element.innerHTML +=
+                text.charAt(index);
+
+            index++;
+
+            setTimeout(type,35);
+
+        }
+
+    }
+
+    type();
+
+}
+
+
+/* =====================================================
+   CONFETTI
+===================================================== */
+
+function createConfetti(amount){
+
+    for(let i=0;i<amount;i++){
+
+        const piece=
+            document.createElement("div");
+
+        piece.className="confetti";
+
+        piece.innerHTML=
+            Math.random()>.5 ? "💙" : "✨";
+
+        piece.style.left=
+            Math.random()*100+"vw";
+
+        piece.style.fontSize=
+            (10+Math.random()*18)+"px";
+
+        piece.style.animationDuration=
+            (2.5+Math.random()*3)+"s";
+
+        piece.style.animationDelay=
+            Math.random()*1.5+"s";
+
+        document.body.appendChild(piece);
+
+        setTimeout(()=>{
+
+            piece.remove();
+
+        },6000);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
