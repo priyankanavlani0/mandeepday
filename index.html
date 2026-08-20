@@ -1960,7 +1960,6 @@ h1,h2,h3,h4{
 
             <audio id="song" preload="metadata">
                 <source src="music/our-song.mpeg" type="audio/mpeg">
-                <source src="music/our-song.mp3" type="audio/mpeg">
             </audio>
 
           
@@ -2765,22 +2764,21 @@ function toggleMusic(){
     const record=document.getElementById("record");
     const icon=document.getElementById("musicIcon");
     const text=document.getElementById("musicText");
-    const error=document.getElementById("musicError");
 
     if(song.paused){
-        error.style.display="none";
         const playPromise=song.play();
         if(playPromise!==undefined){
-            playPromise.catch(()=>{
+            playPromise.then(()=>{
+                record.classList.add("playing");
+                icon.className="bi bi-pause-fill";
+                text.innerText="Pause Our Song";
+            }).catch((err)=>{
+                console.error("Audio play error:",err);
                 record.classList.remove("playing");
                 icon.className="bi bi-play-fill";
                 text.innerText="Play Our Song 🫶";
-                error.style.display="block";
             });
         }
-        record.classList.add("playing");
-        icon.className="bi bi-pause-fill";
-        text.innerText="Pause Our Song";
     }else{
         song.pause();
         record.classList.remove("playing");
@@ -2788,11 +2786,6 @@ function toggleMusic(){
         text.innerText="Play Our Song 🫶";
     }
 }
-
-document.getElementById("song").addEventListener("error",()=>{
-    const error=document.getElementById("musicError");
-    if(error) error.style.display="block";
-});
 
 document.getElementById("song").addEventListener("ended",()=>{
     document.getElementById("record").classList.remove("playing");
